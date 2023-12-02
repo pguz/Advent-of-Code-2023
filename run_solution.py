@@ -4,8 +4,8 @@ import json
 import os.path
 import time
 
-#from solutions import (
-#    day_01,
+from solutions import (
+    day_01,
 #    day_02,
 #    day_03,
 #    day_04,
@@ -30,10 +30,10 @@ import time
 #    day_23,
 #    day_24,
 #    day_25,
-#)
+)
 
 day_to_solution_file_mapping = {
-#    "01": day_01,
+    "01": day_01,
 #    "02": day_02,
 #    "03": day_03,
 #    "04": day_04,
@@ -181,9 +181,9 @@ def main():
                 f"Provided expected result {expected_result} is not equal to the calculated one {calculated_result}"
             )
         else:
-            print(f"Calculated result is equal to expected result")
+            print("OK")
     else:
-        print("No expected result was provided")
+        print(f"Calculated result: {calculated_result}")
 
 
 if __name__ == "__main__":
