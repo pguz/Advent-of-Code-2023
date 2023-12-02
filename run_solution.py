@@ -6,7 +6,7 @@ import time
 
 from solutions import (
     day_01,
-#    day_02,
+    day_02,
 #    day_03,
 #    day_04,
 #    day_05,
@@ -34,7 +34,7 @@ from solutions import (
 
 day_to_solution_file_mapping = {
     "01": day_01,
-#    "02": day_02,
+    "02": day_02,
 #    "03": day_03,
 #    "04": day_04,
 #    "05": day_05,
