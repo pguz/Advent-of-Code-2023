@@ -1,7 +1,9 @@
 import re
 
+
 def parse_file(fd):
     return (fd,)
+
 
 def task_1(lines):
     re_first_digit = re.compile(r"(\d)")
@@ -13,6 +15,7 @@ def task_1(lines):
         return int(f"{first_digit}{last_digit}")
 
     return sum(_calc_calibration_value(line) for line in lines)
+
 
 def task_2(lines):
     str_digits_mapping = {
@@ -27,17 +30,30 @@ def task_2(lines):
         'eight': 8,
         'nine': 9,
     }
-    re_first_digit = re.compile(r"(\d|zero|one|two|three|four|five|six|seven|eight|nine)")
-    re_last_digit = re.compile(r".*(\d|zero|one|two|three|four|five|six|seven|eight|nine)")
+    re_first_digit = re.compile(
+        r"(\d|zero|one|two|three|four|five|six|seven|eight|nine)"
+    )
+    re_last_digit = re.compile(
+        r".*(\d|zero|one|two|three|four|five|six|seven|eight|nine)"
+    )
 
     def _calc_calibration_value(l):
         raw_first_digit = re_first_digit.search(l)[1]
         raw_last_digit = re_last_digit.match(l)[1]
-        first_digit = int(raw_first_digit) if raw_first_digit.isdigit() else str_digits_mapping[raw_first_digit]
-        last_digit = int(raw_last_digit) if raw_last_digit.isdigit() else str_digits_mapping[raw_last_digit]
+        first_digit = (
+            int(raw_first_digit)
+            if raw_first_digit.isdigit()
+            else str_digits_mapping[raw_first_digit]
+        )
+        last_digit = (
+            int(raw_last_digit)
+            if raw_last_digit.isdigit()
+            else str_digits_mapping[raw_last_digit]
+        )
         return int(f"{first_digit}{last_digit}")
 
     return sum(_calc_calibration_value(line) for line in lines)
+
 
 solution_function_01 = task_1
 solution_function_02 = task_2
