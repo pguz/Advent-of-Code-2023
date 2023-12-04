@@ -9,27 +9,27 @@ from solutions import (
     day_02,
     day_03,
     day_04,
-#    day_05,
-#    day_06,
-#    day_07,
-#    day_08,
-#    day_09,
-#    day_10,
-#    day_11,
-#    day_12,
-#    day_13,
-#    day_14,
-#    day_15,
-#    day_16,
-#    day_17,
-#    day_18,
-#    day_19,
-#    day_20,
-#    day_21,
-#    day_22,
-#    day_23,
-#    day_24,
-#    day_25,
+    #    day_05,
+    #    day_06,
+    #    day_07,
+    #    day_08,
+    #    day_09,
+    #    day_10,
+    #    day_11,
+    #    day_12,
+    #    day_13,
+    #    day_14,
+    #    day_15,
+    #    day_16,
+    #    day_17,
+    #    day_18,
+    #    day_19,
+    #    day_20,
+    #    day_21,
+    #    day_22,
+    #    day_23,
+    #    day_24,
+    #    day_25,
 )
 
 day_to_solution_file_mapping = {
@@ -37,27 +37,27 @@ day_to_solution_file_mapping = {
     "02": day_02,
     "03": day_03,
     "04": day_04,
-#    "05": day_05,
-#    "06": day_06,
-#    "07": day_07,
-#    "08": day_08,
-#    "09": day_09,
-#    "10": day_10,
-#    "11": day_11,
-#    "12": day_12,
-#    "13": day_13,
-#    "14": day_14,
-#    "15": day_15,
-#    "16": day_16,
-#    "17": day_17,
-#    "18": day_18,
-#    "19": day_19,
-#    "20": day_20,
-#    "21": day_21,
-#    "22": day_22,
-#    "23": day_23,
-#    "24": day_24,
-#    "25": day_25,
+    #    "05": day_05,
+    #    "06": day_06,
+    #    "07": day_07,
+    #    "08": day_08,
+    #    "09": day_09,
+    #    "10": day_10,
+    #    "11": day_11,
+    #    "12": day_12,
+    #    "13": day_13,
+    #    "14": day_14,
+    #    "15": day_15,
+    #    "16": day_16,
+    #    "17": day_17,
+    #    "18": day_18,
+    #    "19": day_19,
+    #    "20": day_20,
+    #    "21": day_21,
+    #    "22": day_22,
+    #    "23": day_23,
+    #    "24": day_24,
+    #    "25": day_25,
 }
 
 
@@ -70,7 +70,9 @@ def parse_arguments():
             )
         day_str = f"{day_int:02d}"
         if day_str not in day_to_solution_file_mapping:
-            raise argparse.ArgumentTypeError(f"AoC day {day_str} has not been solved yet.")
+            raise argparse.ArgumentTypeError(
+                f"AoC day {day_str} has not been solved yet."
+            )
         return day_str
 
     parser = argparse.ArgumentParser(description="Advent of Code 2023")
@@ -129,6 +131,7 @@ def read_expected_result_from_results_file(aoc_day, task_id):
         else:
             return expected_result
 
+
 def measure_aoc_task_execution(function):
     @functools.wraps(function)
     def task_duration_wrap(task_name, retry, **kwargs):
@@ -140,6 +143,7 @@ def measure_aoc_task_execution(function):
             task_duration += time_end_point - time_start_point
         print(f"{task_name} took {task_duration/retry:.5f}[s]")
         return result
+
     return task_duration_wrap
 
 
@@ -165,7 +169,9 @@ def main():
         if not hasattr(day_module, f"improved_solution_function_{task_id}"):
             print("Improved solution has not been found")
             return
-        task_solution_function = getattr(day_module, f"improved_solution_function_{task_id}")
+        task_solution_function = getattr(
+            day_module, f"improved_solution_function_{task_id}"
+        )
 
     calculated_result = run_task_solution(
         task_name=f"day_{aoc_day}_task_{task_id}",
