@@ -17,17 +17,23 @@ def parse_file(fd):
                     current_number_idxs = set()
                     current_number_processing = False
                 if val not in ['.', '\n']:
-                    symbols_info.append((val, {
-                        (i_row - 1, i_col - 1),
-                        (i_row - 1, i_col),
-                        (i_row - 1, i_col + 1),
-                        (i_row, i_col - 1),
-                        (i_row, i_col + 1),
-                        (i_row + 1, i_col - 1),
-                        (i_row + 1, i_col),
-                        (i_row + 1, i_col + 1),
-                    }))
+                    symbols_info.append(
+                        (
+                            val,
+                            {
+                                (i_row - 1, i_col - 1),
+                                (i_row - 1, i_col),
+                                (i_row - 1, i_col + 1),
+                                (i_row, i_col - 1),
+                                (i_row, i_col + 1),
+                                (i_row + 1, i_col - 1),
+                                (i_row + 1, i_col),
+                                (i_row + 1, i_col + 1),
+                            },
+                        )
+                    )
     return (numbers_info, symbols_info)
+
 
 def task_1(numbers_info, symbols_info):
     # compact version:
@@ -37,13 +43,14 @@ def task_1(numbers_info, symbols_info):
     # detailed version:
     symbols_area = set()
     for _, symbol_area in symbols_info:
-       symbols_area.update(symbol_area)
+        symbols_area.update(symbol_area)
 
     part_numbers_sum = 0
     for number_val, number_idxs in numbers_info:
         if number_idxs & symbols_area:
             part_numbers_sum += number_val
     return part_numbers_sum
+
 
 def task_2(numbers_info, symbols_info):
     gear_ratio_sum = 0
@@ -55,8 +62,8 @@ def task_2(numbers_info, symbols_info):
             if symbol_area & number_idxs:
                 symbol_matches.append(number_val)
         if len(symbol_matches) == 2:
-            gear_ratio_sum += (symbol_matches[0] * symbol_matches[1])
-    
+            gear_ratio_sum += symbol_matches[0] * symbol_matches[1]
+
     return gear_ratio_sum
 
 
