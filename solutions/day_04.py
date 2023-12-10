@@ -2,7 +2,6 @@ from itertools import zip_longest
 
 
 def parse_file(fd):
-    cards_numbers = []
     for row in fd:
         numbers = row.split(": ")[1]
         winning_numbers_str, my_numbers_str = numbers.split(" | ")
@@ -10,11 +9,10 @@ def parse_file(fd):
             set(map(int, numbers.split()))
             for numbers in (winning_numbers_str, my_numbers_str)
         )
-        cards_numbers.append((winning_numbers, my_numbers))
-    return (cards_numbers,)
+        yield (winning_numbers, my_numbers)
 
 
-def task_1(cards_numbers):
+def task_1(*cards_numbers):
     return sum(
         pow(2, common_numbers_count - 1)
         for winning_numbers, my_numbers in cards_numbers
@@ -22,7 +20,7 @@ def task_1(cards_numbers):
     )
 
 
-def task_2(cards_numbers):
+def task_2(*cards_numbers):
     total_cards = 0
     copies_to_add = []
     for winning_numbers, my_numbers in cards_numbers:
